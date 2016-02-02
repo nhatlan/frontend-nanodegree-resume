@@ -2,56 +2,57 @@
 This is empty on purpose! Your code to build the resume will go here.
 */
 
-/**Object bio */
+/** @global */
 var bio ={
-	"name": "Van Pham Nhat Lan",
-	"role": "Product Designer",
-	"contacts": {
-		"mobile": "01228188889",
-		"email": "vanphamnhatlan93@gmail.com",
-		"github": "nhatlan",
-		"twitter": "procrasmater",
-		"location": "Ky Dong street, Ho Chi Minh city"
+	'name': 'Van Pham Nhat Lan',
+	'role': 'Product Designer',
+	'contacts': {
+		'mobile': '01228188889',
+		'email': 'vanphamnhatlan93@gmail.com',
+		'github': 'nhatlan',
+		'twitter': 'procrasmater',
+		'location': 'Ky Dong street, Ho Chi Minh city'
 	},
-	"welcomeMessage": "Hi, lets talk" ,
-	"skills" : [
-		"graphic design",
-		"front end development",
-		"user experience",
-		"product design",
+	'welcomeMessage': 'Hi, lets talk' ,
+	'skills' : [
+		'graphic design',
+		'front end development',
+		'user experience',
+		'product design',
 	],
-	"biopic": "images/fry.jpg",
+	'biopic': 'images/fry.jpg',
 
 	display : function() {
-		var formattedBiopic =HTMLbioPic.replace("%data%", this.biopic);
-		$("#header").prepend(formattedBiopic);
+		var formattedBiopic =HTMLbioPic.replace('%data%', this.biopic);
+		$('#header').prepend(formattedBiopic);
 
-		var formattedRole= HTMLheaderRole.replace("%data%", this["role"]);
-		$("#header").prepend(formattedRole);
+		var formattedRole= HTMLheaderRole.replace('%data%', this.role);
+		$('#header').prepend(formattedRole);
 
-		var formattedName= HTMLheaderName.replace("%data%", this["name"]);
-		$("#header").prepend(formattedName);
+		var formattedName= HTMLheaderName.replace('%data%', this.name);
+		$('#header').prepend(formattedName);
 
 		var contactTitleArray = Object.keys(this.contacts);
-		for (item in contactTitleArray){
+		for (var item = 0; item < contactTitleArray.length; item++) {
 			var contactTitle = contactTitleArray[item];
-			var formattedGenericContact = HTMLcontactGeneric.replace("%contact%", contactTitleArray[item]);
-			formattedGenericContact = formattedGenericContact.replace("%data%", this.contacts[contactTitle]);
-			$("#topContacts").append(formattedGenericContact);
+			var formattedGenericContact = HTMLcontactGeneric.replace('%contact%', contactTitleArray[item]);
+			formattedGenericContact = formattedGenericContact.replace('%data%', this.contacts[contactTitle]);
+			$('#topContacts').append(formattedGenericContact);
+			$('#footerContacts').append(formattedGenericContact);
 		};
 
 		var skillNum = this.skills.length-1;
 		if (bio.skills.length > 0) {
-			$("#header").append(HTMLskillsStart);
+			$('#header').append(HTMLskillsStart);
 			while (skillNum >= 0){
-				var formattedSkill = HTMLskills.replace("%data%", this.skills[skillNum]);
-				$("#skills").append(formattedSkill);
+				var formattedSkill = HTMLskills.replace('%data%', this.skills[skillNum]);
+				$('#skills').append(formattedSkill);
 				skillNum= skillNum-1;
 			}
-		};
+		}
 
-		var formattedMsg = HTMLwelcomeMsg.replace("%data%", this.welcomeMessage);
-		$("#header").append(formattedMsg);
+		var formattedMsg = HTMLwelcomeMsg.replace('%data%', this.welcomeMessage);
+		$('#header').append(formattedMsg);
 
 
 	}
@@ -59,163 +60,165 @@ var bio ={
 
 bio.display();
 
+/** @global */
 var education = {
-	"schools" : [
+	'schools' : [
 		{
-			"name": "RMIT Vietnam",
-			"location": "Ho Chi Minh City",
-			"degree": "Bachelor Degree",
-			"majors":
+			'name': 'RMIT Vietnam',
+			'location': 'Ho Chi Minh City',
+			'degree': 'Bachelor Degree',
+			'majors':
 				[
-					"graphic design",
-					"3d animation",
-					"web design",
+					'graphic design',
+					'3d animation',
+					'web design',
 				],
-			"dates": "2011 - 2014",
-			"url": "http://www.rmit.edu.vn",
+			'dates': '2011 - 2014',
+			'url': 'http://www.rmit.edu.vn',
 		},
 	{
-		"name": "LSTS",
-		"location": "Ho Chi Minh City",
-		"degree": "High School",
-		"majors":
+		'name': 'LSTS',
+		'location': 'Ho Chi Minh City',
+		'degree': 'High School',
+		'majors':
 			[
-				"math",
-				"literature",
-				"english",
-				"physics",
-				"chemistry",
-				"biology"
+				'math',
+				'literature',
+				'english',
+				'physics',
+				'chemistry',
+				'biology'
 			],
-		"dates": "2008 - 2011",
-		"url": "http://lsts.edu.vn/",
+		'dates': '2008 - 2011',
+		'url': 'http://lsts.edu.vn/',
 		}
 	],
 
-	"onlineCourses" : [
+	'onlineCourses' : [
 		{
-			"title": "Front End Nanodegree Course",
-			"school": "Udacity ",
-			"dates": "December 2015",
-			"url": "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001"
+			'title': 'Front End Nanodegree Course',
+			'school': 'Udacity ',
+			'dates': 'December 2015',
+			'url': 'https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001'
 		},
 		{
-			"title": "Interaction Design Specialization",
-			"school": "Coursera",
-			"dates": "January 2015",
-			"url": "https://www.coursera.org/specializations/interaction-design"
+			'title': 'Interaction Design Specialization',
+			'school': 'Coursera',
+			'dates': 'January 2015',
+			'url': 'https://www.coursera.org/specializations/interaction-design'
 		}
 	],
 
 	display : function() {
-		for (var school in education.schools){
-			$("#education").append(HTMLschoolStart);
-			var formattedschoolName = HTMLschoolName.replace("%data%", education.schools[school].name);
-			formattedschoolName = formattedschoolName.replace("#", education.schools[school].url)
-			$(".education-entry:last").append(formattedschoolName);
-			var formattedschoolDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
-			$(".education-entry:last").append(formattedschoolDegree);
-			var formattedschoolDates = HTMLschoolDates.replace("%data%", education.schools[school].dates);
-			$(".education-entry:last").append(formattedschoolDates);
-			var formattedschoolLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
-			$(".education-entry:last").append(formattedschoolLocation);
-			$(".education-entry:last").append(HTMLschoolMajorStart);
-			$(".major:last").append(HTMLschoolMajorList);
+		for (var school = 0; school < education.schools.length; school++){
+			$('#education').append(HTMLschoolStart);
+			var formattedschoolName = HTMLschoolName.replace('%data%', education.schools[school].name);
+			formattedschoolName = formattedschoolName.replace('#', education.schools[school].url);
+			$('.education-entry:last').append(formattedschoolName);
+			var formattedschoolDegree = HTMLschoolDegree.replace('%data%', education.schools[school].degree);
+			$('.education-entry:last').append(formattedschoolDegree);
+			var formattedschoolDates = HTMLschoolDates.replace('%data%', education.schools[school].dates);
+			$('.education-entry:last').append(formattedschoolDates);
+			var formattedschoolLocation = HTMLschoolLocation.replace('%data%', education.schools[school].location);
+			$('.education-entry:last').append(formattedschoolLocation);
+			$('.education-entry:last').append(HTMLschoolMajorStart);
+			$('.major:last').append(HTMLschoolMajorList);
 			for (var major in education.schools[school].majors){
 				console.log(education.schools[school].name);
-				var formattedschoolMajorsItem=(HTMLschoolMajor).replace("%data%", education.schools[school].majors[major]);
-				$(".major-list:last").append(formattedschoolMajorsItem);
-			};
-		};
+				var formattedschoolMajorsItem=(HTMLschoolMajor).replace('%data%', education.schools[school].majors[major]);
+				$('.major-list:last').append(formattedschoolMajorsItem);
+			}
+		}
 
-		$("#education").append(HTMLonlineClasses);
-		for (var course in education.onlineCourses){
-			$("#education").append(HTMLschoolStart);
-			var formattedcourseName = HTMLonlineTitle.replace("%data%", education.onlineCourses[course].title);
-			formattedcourseName = formattedcourseName.replace("#", education.onlineCourses[course].url);
-			var formattedcourseSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[course].school);
-			$(".education-entry:last").append(formattedcourseName + formattedcourseSchool);
-			var formattedcourseDates = HTMLonlineDates.replace("%data%", education.onlineCourses[course].dates);
-			$(".education-entry:last").append(formattedcourseDates);
-			var formattedcourseURL = HTMLonlineURL.replace("%data%", "link");
-			formattedcourseURL = formattedcourseURL.replace("#", education.onlineCourses[course].url);
-			$(".education-entry:last").append(formattedcourseURL);
-		};
+		$('#education').append(HTMLonlineClasses);
+		for (var course = 0; course < education.onlineCourses.length; course++){
+			$('#education').append(HTMLschoolStart);
+			var formattedcourseName = HTMLonlineTitle.replace('%data%', education.onlineCourses[course].title);
+			formattedcourseName = formattedcourseName.replace('#', education.onlineCourses[course].url);
+			var formattedcourseSchool = HTMLonlineSchool.replace('%data%', education.onlineCourses[course].school);
+			$('.education-entry:last').append(formattedcourseName + formattedcourseSchool);
+			var formattedcourseDates = HTMLonlineDates.replace('%data%', education.onlineCourses[course].dates);
+			$('.education-entry:last').append(formattedcourseDates);
+			var formattedcourseURL = HTMLonlineURL.replace('%data%', 'link');
+			formattedcourseURL = formattedcourseURL.replace('#', education.onlineCourses[course].url);
+			$('.education-entry:last').append(formattedcourseURL);
+		}
 	}
 };
 
 education.display();
 
-/**Object work */
+/** @global */
 var work ={
-	"jobs" : [
+	'jobs' : [
 		{
-			"employer": "Scottwat Product Agency",
-			"title": "Product Designer",
-			"location": "Ho Chi Minh City",
-			"dates": "6 months",
-			"description": "full-time job"
+			'employer': 'Scottwat Product Agency',
+			'title': 'Product Designer',
+			'location': 'Ho Chi Minh City',
+			'dates': '6 months',
+			'description': 'full-time job'
 		},
 		{
-			"employer": "Red Cat Motion",
-			"title": "Motion Designer",
-			"location": "Dinh Bo Linh, Ho Chi Minh City",
-			"dates": "6 months",
-			"description": "full-time job"
+			'employer': 'Red Cat Motion',
+			'title': 'Motion Designer',
+			'location': 'Dinh Bo Linh, Ho Chi Minh City',
+			'dates': '6 months',
+			'description': 'full-time job'
 		}
 	],
 	display: function() {
-		for(job in work.jobs){
-		$("#workExperience").append(HTMLworkStart);
-		var employer =HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-		var title =HTMLworkTitle.replace("%data%", work.jobs[job].title);
+		for (var job = 0; job < work.jobs.length; job++){
+		$('#workExperience').append(HTMLworkStart);
+		var employer =HTMLworkEmployer.replace('%data%', work.jobs[job].employer);
+		var title =HTMLworkTitle.replace('%data%', work.jobs[job].title);
 		var employerTitle = employer + title;
-		var dates =HTMLworkDates.replace("%data%", work.jobs[job].dates);
-		var workLocation =HTMLworkLocation.replace("%data%", work.jobs[job].location);
-		var description =HTMLworkDescription.replace("%data%", work.jobs[job].description);
-		$(".work-entry:last").append(employerTitle);
-		$(".work-entry:last").append(dates);
-		$(".work-entry:last").append(workLocation);
-		$(".work-entry:last").append(description);
+		var dates =HTMLworkDates.replace('%data%', work.jobs[job].dates);
+		var workLocation =HTMLworkLocation.replace('%data%', work.jobs[job].location);
+		var description =HTMLworkDescription.replace('%data%', work.jobs[job].description);
+		$('.work-entry:last').append(employerTitle);
+		$('.work-entry:last').append(dates);
+		$('.work-entry:last').append(workLocation);
+		$('.work-entry:last').append(description);
 		}
 	}
 };
 
 work.display();
 
+/** @global */
 var projects ={
-	"projects" : [
+	'projects' : [
 		{
-			"title": "Than Den",
-			"dates": "October 2015",
-			"description": "Building a content platform, from merely idea to hi-fidelity mock up.",
-			"images": "images/photo1-small.jpg",
+			'title': 'Than Den',
+			'dates': 'October 2015',
+			'description': 'Building a content platform, from merely idea to hi-fidelity mock up.',
+			'images': 'images/photo1-small.jpg',
 		},
 		{
-			"title": "Social Care",
-			"dates": "Jan 2016",
-			"description": "Improve the user experience of a social listening tool",
-			"images": "images/photo2-small.jpg",
+			'title': 'Social Care',
+			'dates': 'Jan 2016 - in ',
+			'description': 'Improve the user experience of a social listening tool',
+			'images': 'images/photo2-small.jpg',
 		},
 		{
-			"title": "Mini Website",
-			"dates": "Jan 2016",
-			"description": "Design mock up for a business website",
-			"images": "images/photo3-small.jpg",
+			'title': 'Mini Website',
+			'dates': 'Jan 2016',
+			'description': 'Design mock up for a business website',
+			'images': 'images/photo3-small.jpg',
 		}
 	],
 	display: function() {
-		for (proj in projects.projects){
-		$("#projects").append(HTMLprojectStart);
-		var formattedTitle =HTMLprojectTitle.replace("%data%", projects.projects[proj].title);
-		$(".project-entry:last").append(formattedTitle);
-		var formattedDates =HTMLprojectDates.replace("%data%", projects.projects[proj].dates);
-		$(".project-entry:last").append(formattedDates);
-		var formattedDesc =HTMLworkDescription.replace("%data%", projects.projects[proj].description);
-		$(".project-entry:last").append(formattedDesc);
-		var formattedImg =HTMLprojectImage.replace("%data%", projects.projects[proj].images);
-		$(".project-entry:last").append(formattedImg);
-		};
+		for (var proj = 0; proj < projects.projects.length; proj++){
+		$('#projects').append(HTMLprojectStart);
+		var formattedTitle =HTMLprojectTitle.replace('%data%', projects.projects[proj].title);
+		$('.project-entry:last').append(formattedTitle);
+		var formattedDates =HTMLprojectDates.replace('%data%', projects.projects[proj].dates);
+		$('.project-entry:last').append(formattedDates);
+		var formattedDesc =HTMLworkDescription.replace('%data%', projects.projects[proj].description);
+		$('.project-entry:last').append(formattedDesc);
+		var formattedImg =HTMLprojectImage.replace('%data%', projects.projects[proj].images);
+		$('.project-entry:last').append(formattedImg);
+		}
 	}
 };
 
@@ -228,23 +231,10 @@ $(document).click(function(loc) {
 	logClicks(x,y);
 });
 
-function displayFooter () {
-	var contactTitleArray = Object.keys(bio.contacts);
-		for (item in contactTitleArray){
-			var contactTitle = contactTitleArray[item];
-			var formattedGenericContact = HTMLcontactGeneric.replace("%contact%", contactTitleArray[item]);
-			formattedGenericContact = formattedGenericContact.replace("%data%", bio.contacts[contactTitle]);
-			$("#footerContacts").append(formattedGenericContact);
-		};
-};
-
-displayFooter();
-
-
 /**
 @function display Google Map
 */
-$("#mapDiv").append(googleMap);
+$('#mapDiv').append(googleMap);
 
 
 
