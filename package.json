@@ -2,6 +2,8 @@
   "name": "front-end-nanodegree",
   "version": "0.1.0",
   "devDependencies": {
-    "grunt": "~0.4.1"
+    "grunt": "~0.4.1",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-responsive-images": "^0.1.7"
   }
 }

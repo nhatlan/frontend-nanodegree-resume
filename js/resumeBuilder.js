@@ -1,8 +1,10 @@
 /*
 This is empty on purpose! Your code to build the resume will go here.
- */
+*/
+
+/**Object bio */
 var bio ={
-	"name": "Nhat Lan",
+	"name": "Van Pham Nhat Lan",
 	"role": "Product Designer",
 	"contacts": {
 		"mobileNumber": "01228188889",
@@ -35,7 +37,7 @@ var bio ={
 			var contactTitle = contactTitleArray[item];
 			var formattedGenericContact = HTMLcontactGeneric.replace("%contact%", contactTitleArray[item]);
 			formattedGenericContact = formattedGenericContact.replace("%data%", this.contacts[contactTitle]);
-			$("#header").append(formattedGenericContact);
+			$("#topContacts").append(formattedGenericContact);
 		};
 
 		var skillNum = this.skills.length-1;
@@ -57,49 +59,6 @@ var bio ={
 
 bio.display();
 
-var work ={
-	"jobs" : [
-		{
-			"employer": "Scottwat Product Agency",
-			"title": "Product Designer",
-			"location": "Ho Chi Minh City",
-			"dates": "6 months",
-			"description": "full-time job"
-		},
-		{
-			"employer": "Red Cat Motion",
-			"title": "Motion Designer",
-			"location": "Ho Chi Minh City",
-			"dates": "6 months",
-			"description": "full-time job"
-		}
-	]
-};
-
-var projects ={
-	"projects" : [
-		{
-			"title": "Than Den",
-			"dates": "October 2015",
-			"description": "content platform",
-			"images": "",
-		},
-		{
-			"title": "Social Care",
-			"dates": "Jan 2016",
-			"description": "social listening tool",
-			"images": "",
-		},
-		{
-			"title": "Mini Website",
-			"dates": "Jan 2016",
-			"description": "business website",
-			"images": "",
-		}
-	]
-};
-
-
 var education = {
 	"schools" : [
 		{
@@ -118,60 +77,135 @@ var education = {
 	{
 		"name": "LSTS",
 		"location": "Ho Chi Minh City",
-		"degree": "high school",
+		"degree": "High School",
 		"majors":
 			[
 				"math",
 				"literature",
 				"english",
 				"physics",
-				"chemistry"
+				"chemistry",
+				"biology"
 			],
-		"dates": "2011 - 2014",
-		"url": "http://www.lsts.edu.vn",
+		"dates": "2008 - 2011",
+		"url": "http://lsts.edu.vn/",
 		}
 	],
 
 	"onlineCourses" : [
 		{
-		"title": "Front End Nanodegree Course",
-		"school": "Udacity ",
-		"dates": "December 2015",
-		"url": "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001"
+			"title": "Front End Nanodegree Course",
+			"school": "Udacity ",
+			"dates": "December 2015",
+			"url": "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001"
 		},
 		{
 			"title": "Interaction Design Specialization",
-		"school": "Coursera",
-		"dates": "January 2015",
-		"url": "https://www.coursera.org/specializations/interaction-design"
+			"school": "Coursera",
+			"dates": "January 2015",
+			"url": "https://www.coursera.org/specializations/interaction-design"
 		}
-	]
+	],
+
+	display : function() {
+		for (var school in education.schools){
+			$("#education").append(HTMLschoolStart);
+			var formattedschoolName = HTMLschoolName.replace("%data%", education.schools[school].name);
+			formattedschoolName = formattedschoolName.replace("#", education.schools[school].url)
+			$(".education-entry:last").append(formattedschoolName);
+			var formattedschoolDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
+			$(".education-entry:last").append(formattedschoolDegree);
+			var formattedschoolDates = HTMLschoolDates.replace("%data%", education.schools[school].dates);
+			$(".education-entry:last").append(formattedschoolDates);
+			var formattedschoolLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
+			$(".education-entry:last").append(formattedschoolLocation);
+			$(".education-entry:last").append(HTMLschoolMajorStart);
+			$(".major:last").append(HTMLschoolMajorList);
+			for (var major in education.schools[school].majors){
+				console.log(education.schools[school].name);
+				var formattedschoolMajorsItem=(HTMLschoolMajor).replace("%data%", education.schools[school].majors[major]);
+				$(".major-list:last").append(formattedschoolMajorsItem);
+			};
+		};
+
+		$("#education").append(HTMLonlineClasses);
+		for (var course in education.onlineCourses){
+			$("#education").append(HTMLschoolStart);
+			var formattedcourseName = HTMLonlineTitle.replace("%data%", education.onlineCourses[course].title);
+			formattedcourseName = formattedcourseName.replace("#", education.onlineCourses[course].url);
+			var formattedcourseSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[course].school);
+			$(".education-entry:last").append(formattedcourseName + formattedcourseSchool);
+			var formattedcourseDates = HTMLonlineDates.replace("%data%", education.onlineCourses[course].dates);
+			$(".education-entry:last").append(formattedcourseDates);
+			var formattedcourseURL = HTMLonlineURL.replace("%data%", "link");
+			formattedcourseURL = formattedcourseURL.replace("#", education.onlineCourses[course].url);
+			$(".education-entry:last").append(formattedcourseURL);
+		};
+	}
 };
 
+education.display();
 
-for(job in work.jobs){
-	$("#workExperience").append(HTMLworkStart);
-	var employer =HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-	var title =HTMLworkTitle.replace("%data%", work.jobs[job].title);
-	var employerTitle = employer + title;
-	var dates =HTMLworkDates.replace("%data%", work.jobs[job].dates);
-	var workLocation =HTMLworkLocation.replace("%data%", work.jobs[job].location);
-	var description =HTMLworkDescription.replace("%data%", work.jobs[job].description);
-	function displayWork(){
+/**Object work */
+var work ={
+	"jobs" : [
+		{
+			"employer": "Scottwat Product Agency",
+			"title": "Product Designer",
+			"location": "Ho Chi Minh City",
+			"dates": "6 months",
+			"description": "full-time job"
+		},
+		{
+			"employer": "Red Cat Motion",
+			"title": "Motion Designer",
+			"location": "Dinh Bo Linh, Ho Chi Minh City",
+			"dates": "6 months",
+			"description": "full-time job"
+		}
+	],
+	display: function() {
+		for(job in work.jobs){
+		$("#workExperience").append(HTMLworkStart);
+		var employer =HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
+		var title =HTMLworkTitle.replace("%data%", work.jobs[job].title);
+		var employerTitle = employer + title;
+		var dates =HTMLworkDates.replace("%data%", work.jobs[job].dates);
+		var workLocation =HTMLworkLocation.replace("%data%", work.jobs[job].location);
+		var description =HTMLworkDescription.replace("%data%", work.jobs[job].description);
 		$(".work-entry:last").append(employerTitle);
 		$(".work-entry:last").append(dates);
 		$(".work-entry:last").append(workLocation);
 		$(".work-entry:last").append(description);
-	};
-	displayWork();
-
+		}
+	}
 };
 
+work.display();
 
-// };
-
-projects.display = function(){
-	for (proj in projects.projects){
+var projects ={
+	"projects" : [
+		{
+			"title": "Than Den",
+			"dates": "October 2015",
+			"description": "Building a content platform, from merely idea to hi-fidelity mock up.",
+			"images": "",
+		},
+		{
+			"title": "Social Care",
+			"dates": "Jan 2016",
+			"description": "Improve the user experience of a social listening tool",
+			"images": "",
+		},
+		{
+			"title": "Mini Website",
+			"dates": "Jan 2016",
+			"description": "Design mock up for a business website",
+			"images": "",
+		}
+	],
+	display: function() {
+		for (proj in projects.projects){
 		$("#projects").append(HTMLprojectStart);
 		var formattedTitle =HTMLprojectTitle.replace("%data%", projects.projects[proj].title);
 		$(".project-entry:last").append(formattedTitle);
@@ -179,7 +213,8 @@ projects.display = function(){
 		$(".project-entry:last").append(formattedDates);
 		var formattedDesc =HTMLworkDescription.replace("%data%", projects.projects[proj].description);
 		$(".project-entry:last").append(formattedDesc);
-	};
+		};
+	}
 };
 
 projects.display();
@@ -191,20 +226,10 @@ $(document).click(function(loc) {
 	logClicks(x,y);
 });
 
-// CREATE INTERNATIONALIZE BUTTON
 
-// $("#main").append(internationalizeButton);
-
-// function inName(string) {
-// 	var stringArray = string.split(" ");
-// 	firstname = stringArray[0].slice(0,1).toUpperCase + stringArray[0].slice(1).toLowerCase;
-// 	lastName = stringArray[1].toUpperCase;
-// 	var formattedString = firstName +" " + lastName;
-// 	retrurn formattedString;
-// };
-
-// CREATE A DISPLAY FUNCTION FOR PROJECT OBJECT
-
+/**
+@function display Google Map
+*/
 $("#mapDiv").append(googleMap);
 
 

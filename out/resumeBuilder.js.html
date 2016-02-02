@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: resumeBuilder.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: resumeBuilder.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/*
+This is empty on purpose! Your code to build the resume will go here.
+ */
+/** @global */
+ /**
+@todo check for trailing whitespace
+@todo check for
+*/
+var bio ={
+	"name": "Nhat Lan",
+	"role": "Product Designer",
+/**
+@property a contacts array property of object bio
+*/
+	"contacts": {
+		"mobileNumber": "01228188889",
+		"emailAdress": "vanphamnhatlan93@gmail.com",
+		"gitHubname": "nhatlan",
+		"twitter": "procrasmater",
+		"location": "Ky Dong street, Ho Chi Minh city"
+	},
+	"welcomeMessage": "Hi, lets talk" ,
+	"skills" : [
+		"graphic design",
+		"front end development",
+		"user experience",
+		"product design",
+	],
+	"biopic": "images/fry.jpg",
+
+/**
+@method display the bio objects
+*/
+	display : function() {
+		var formattedBiopic =HTMLbioPic.replace("%data%", this.biopic);
+		$("#header").prepend(formattedBiopic);
+
+		var formattedRole= HTMLheaderRole.replace("%data%", this["role"]);
+		$("#header").prepend(formattedRole);
+
+		var formattedName= HTMLheaderName.replace("%data%", this["name"]);
+		$("#header").prepend(formattedName);
+
+		var contactTitleArray = Object.keys(this.contacts);
+		for (item in contactTitleArray){
+			var contactTitle = contactTitleArray[item];
+			var formattedGenericContact = HTMLcontactGeneric.replace("%contact%", contactTitleArray[item]);
+			formattedGenericContact = formattedGenericContact.replace("%data%", this.contacts[contactTitle]);
+			$("#header").append(formattedGenericContact);
+		};
+
+		var skillNum = this.skills.length-1;
+		if (bio.skills.length > 0) {
+			$("#header").append(HTMLskillsStart);
+			while (skillNum >= 0){
+				var formattedSkill = HTMLskills.replace("%data%", this.skills[skillNum]);
+				$("#skills").append(formattedSkill);
+				skillNum= skillNum-1;
+			}
+		};
+
+		var formattedMsg = HTMLwelcomeMsg.replace("%data%", this.welcomeMessage);
+		$("#header").append(formattedMsg);
+
+
+	}
+};
+
+
+
+bio.display();
+
+var work ={
+	"jobs" : [
+		{
+			"employer": "Scottwat Product Agency",
+			"title": "Product Designer",
+			"location": "Ho Chi Minh City",
+			"dates": "6 months",
+			"description": "full-time job"
+		},
+		{
+			"employer": "Red Cat Motion",
+			"title": "Motion Designer",
+			"location": "Ho Chi Minh City",
+			"dates": "6 months",
+			"description": "full-time job"
+		}
+	]
+};
+
+var projects ={
+	"projects" : [
+		{
+			"title": "Than Den",
+			"dates": "October 2015",
+			"description": "content platform",
+			"images": "",
+		},
+		{
+			"title": "Social Care",
+			"dates": "Jan 2016",
+			"description": "social listening tool",
+			"images": "",
+		},
+		{
+			"title": "Mini Website",
+			"dates": "Jan 2016",
+			"description": "business website",
+			"images": "",
+		}
+	]
+};
+
+
+var education = {
+	"schools" : [
+		{
+			"name": "RMIT Vietnam",
+			"location": "Ho Chi Minh City",
+			"degree": "Bachelor Degree",
+			"majors":
+				[
+					"graphic design",
+					"3d animation",
+					"web design",
+				],
+			"dates": "2011 - 2014",
+			"url": "http://www.rmit.edu.vn",
+		},
+	{
+		"name": "LSTS",
+		"location": "Ho Chi Minh City",
+		"degree": "high school",
+		"majors":
+			[
+				"math",
+				"literature",
+				"english",
+				"physics",
+				"chemistry"
+			],
+		"dates": "2011 - 2014",
+		"url": "http://www.lsts.edu.vn",
+		}
+	],
+
+	"onlineCourses" : [
+		{
+		"title": "Front End Nanodegree Course",
+		"school": "Udacity ",
+		"dates": "December 2015",
+		"url": "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001"
+		},
+		{
+			"title": "Interaction Design Specialization",
+		"school": "Coursera",
+		"dates": "January 2015",
+		"url": "https://www.coursera.org/specializations/interaction-design"
+		}
+	]
+};
+
+
+for(job in work.jobs){
+	$("#workExperience").append(HTMLworkStart);
+	var employer =HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
+	var title =HTMLworkTitle.replace("%data%", work.jobs[job].title);
+	var employerTitle = employer + title;
+	var dates =HTMLworkDates.replace("%data%", work.jobs[job].dates);
+	var workLocation =HTMLworkLocation.replace("%data%", work.jobs[job].location);
+	var description =HTMLworkDescription.replace("%data%", work.jobs[job].description);
+	function displayWork(){
+		$(".work-entry:last").append(employerTitle);
+		$(".work-entry:last").append(dates);
+		$(".work-entry:last").append(workLocation);
+		$(".work-entry:last").append(description);
+	};
+	displayWork();
+
+};
+
+
+// };
+
+projects.display = function(){
+	for (proj in projects.projects){
+		$("#projects").append(HTMLprojectStart);
+		var formattedTitle =HTMLprojectTitle.replace("%data%", projects.projects[proj].title);
+		$(".project-entry:last").append(formattedTitle);
+		var formattedDates =HTMLprojectDates.replace("%data%", projects.projects[proj].dates);
+		$(".project-entry:last").append(formattedDates);
+		var formattedDesc =HTMLworkDescription.replace("%data%", projects.projects[proj].description);
+		$(".project-entry:last").append(formattedDesc);
+	};
+};
+
+projects.display();
+
+$(document).click(function(loc) {
+	var x = loc.pageX;
+	var y = loc.pageY;
+
+	logClicks(x,y);
+});
+
+// CREATE INTERNATIONALIZE BUTTON
+
+// $("#main").append(internationalizeButton);
+
+// function inName(string) {
+// 	var stringArray = string.split(" ");
+// 	firstname = stringArray[0].slice(0,1).toUpperCase + stringArray[0].slice(1).toLowerCase;
+// 	lastName = stringArray[1].toUpperCase;
+// 	var formattedString = firstName +" " + lastName;
+// 	retrurn formattedString;
+// };
+
+// CREATE A DISPLAY FUNCTION FOR PROJECT OBJECT
+
+$("#mapDiv").append(googleMap);
+
+
+
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#bio">bio</a></li><li><a href="global.html#displaythebioobjects">display the bio objects</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Feb 02 2016 08:53:52 GMT+0700 (ICT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
