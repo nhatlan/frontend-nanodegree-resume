@@ -7,9 +7,9 @@ var bio ={
 	"name": "Van Pham Nhat Lan",
 	"role": "Product Designer",
 	"contacts": {
-		"mobileNumber": "01228188889",
-		"emailAdress": "vanphamnhatlan93@gmail.com",
-		"gitHubname": "nhatlan",
+		"mobile": "01228188889",
+		"email": "vanphamnhatlan93@gmail.com",
+		"github": "nhatlan",
 		"twitter": "procrasmater",
 		"location": "Ky Dong street, Ho Chi Minh city"
 	},
@@ -189,19 +189,19 @@ var projects ={
 			"title": "Than Den",
 			"dates": "October 2015",
 			"description": "Building a content platform, from merely idea to hi-fidelity mock up.",
-			"images": "",
+			"images": "images/photo1-small.jpg",
 		},
 		{
 			"title": "Social Care",
 			"dates": "Jan 2016",
 			"description": "Improve the user experience of a social listening tool",
-			"images": "",
+			"images": "images/photo2-small.jpg",
 		},
 		{
 			"title": "Mini Website",
 			"dates": "Jan 2016",
 			"description": "Design mock up for a business website",
-			"images": "",
+			"images": "images/photo3-small.jpg",
 		}
 	],
 	display: function() {
@@ -213,6 +213,8 @@ var projects ={
 		$(".project-entry:last").append(formattedDates);
 		var formattedDesc =HTMLworkDescription.replace("%data%", projects.projects[proj].description);
 		$(".project-entry:last").append(formattedDesc);
+		var formattedImg =HTMLprojectImage.replace("%data%", projects.projects[proj].images);
+		$(".project-entry:last").append(formattedImg);
 		};
 	}
 };
@@ -225,6 +227,18 @@ $(document).click(function(loc) {
 
 	logClicks(x,y);
 });
+
+function displayFooter () {
+	var contactTitleArray = Object.keys(bio.contacts);
+		for (item in contactTitleArray){
+			var contactTitle = contactTitleArray[item];
+			var formattedGenericContact = HTMLcontactGeneric.replace("%contact%", contactTitleArray[item]);
+			formattedGenericContact = formattedGenericContact.replace("%data%", bio.contacts[contactTitle]);
+			$("#footerContacts").append(formattedGenericContact);
+		};
+};
+
+displayFooter();
 
 
 /**

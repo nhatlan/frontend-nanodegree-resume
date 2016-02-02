@@ -1,17 +1,26 @@
+
+'use strict'
 module.exports = function(grunt) {
-  // Do grunt-related things in here
-  // Project configuration.
+
   grunt.initConfig({
     responsive_images: {
-    	my-task {
-    		options: {
-          		engine: 'im',
-	          	sizes: [{
-	            name:"thumbnail",
-	            width: 640,
-	            height: 360,
-	          	}]
-        	}
+      img: {
+        options: {
+          engine: 'im',
+          sizes: [{
+            name:"small",
+            width: 360,
+          },
+          {
+            name:"medium",
+            width: 640,
+          },
+          {
+            name:"large",
+            width: 1024,
+          }
+          ]},
+
         /*
         You don't need to change this part if you don't change
         the directory structure.
@@ -22,12 +31,13 @@ module.exports = function(grunt) {
           cwd: 'src_images/',
           dest: 'images/'
         }]
-  	},
-  },
-});
+      },
+    },
+  }
 
-  // Load the plugin that provides the "uglify" task.
+  );
+
   grunt.loadNpmTasks('grunt-responsive-images');
-  grunt.registerTask('default', ['responsive_images:my-task']);
+  grunt.registerTask('default', ['responsive_images:img']);
 
 };
