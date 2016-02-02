@@ -58,8 +58,6 @@ var bio ={
 	}
 };
 
-bio.display();
-
 /** @global */
 var education = {
 	'schools' : [
@@ -146,8 +144,6 @@ var education = {
 	}
 };
 
-education.display();
-
 /** @global */
 var work ={
 	'jobs' : [
@@ -182,8 +178,6 @@ var work ={
 		}
 	}
 };
-
-work.display();
 
 /** @global */
 var projects ={
@@ -222,14 +216,10 @@ var projects ={
 	}
 };
 
+bio.display();
+education.display();
+work.display();
 projects.display();
-
-$(document).click(function(loc) {
-	var x = loc.pageX;
-	var y = loc.pageY;
-
-	logClicks(x,y);
-});
 
 /**
 @function display Google Map

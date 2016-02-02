@@ -1,0 +1,15 @@
+{
+  "name": "front-end-nanodegree",
+  "description": "learning basic javascript by creating an interactive resume",
+  "main": "index.html",
+  "authors": [
+    "Nhat Lan Van"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/nhatlan/frontend-nanodegree-resume",
+  "moduleType": [
+    "globals"
+  ],
+  "dependencies": {
+  }
+}
