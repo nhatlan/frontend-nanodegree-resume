@@ -185,20 +185,26 @@ var projects ={
 		{
 			'title': 'Than Den',
 			'dates': 'October 2015',
-			'description': 'Building a content platform, from merely idea to hi-fidelity mock up.',
+			'description': 'Content platform',
 			'images': 'images/photo1-small.jpg',
 		},
 		{
 			'title': 'Social Care',
-			'dates': 'Jan 2016 - in ',
-			'description': 'Improve the user experience of a social listening tool',
+			'dates': 'Jan 2016 - in progress',
+			'description': 'Social Listening Tool',
 			'images': 'images/photo2-small.jpg',
 		},
 		{
 			'title': 'Mini Website',
 			'dates': 'Jan 2016',
-			'description': 'Design mock up for a business website',
+			'description': 'Brand Micro Site',
 			'images': 'images/photo3-small.jpg',
+		},
+		{
+			'title': 'Younet Digital Website',
+			'dates': 'Jan 2016 - in progress',
+			'description': 'Business Website',
+			'images': 'images/photo4-small.jpg',
 		}
 	],
 	display: function() {
